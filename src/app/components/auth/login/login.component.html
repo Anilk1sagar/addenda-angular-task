@@ -1,0 +1,29 @@
+<div class="auth-container" fxLayout="column" >
+
+    <img class="logo" src="assets/images/addenda-logo.png"><br>
+
+    <form [formGroup]="_mFormGroup" (ngSubmit)="_mOnSubmit()">
+        <div fxLayout="column">
+          <mat-form-field fxFlex>
+            <input matInput formControlName="email" placeholder="Enter Email" type='email'>
+          </mat-form-field>
+
+          <mat-form-field fxFlex>
+            <input matInput formControlName="password" placeholder="Enter password" type='password'>
+          </mat-form-field>
+
+          <div fxLayout="row">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!_mFormGroup.valid" style="width: 100%">
+                Login
+              </button>
+          </div>
+        </div>
+    </form>
+
+    <div *ngIf="_mIsVerifying">
+        <p>Connecting...</p><br>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+
+
+</div>

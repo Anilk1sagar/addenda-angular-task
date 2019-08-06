@@ -1,0 +1,70 @@
+.auth-container {
+    width: 344px;
+    // margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    // border: 1px solid red;
+}
+
+.logo {
+    max-width: 120px;
+    margin: 0 auto;
+}
+
+h6,
+h4 {
+    margin: 0px;
+}
+
+.app-logo {
+    min-width: 44px;
+    max-width: 44px;
+    max-height: 44px;
+}
+
+// .app-sub-logo {
+//     min-width: 140px;
+//     max-width: 140px;
+//     max-height: 32px;
+//     height: 32px;
+// }
+
+
+.tb-avatar{
+    object-position: center;
+}
+
+.hr-line{
+    width: 100%;
+    height: 1px;
+    padding: 0;
+    margin: 0;
+    background: rgb(119, 195, 119);
+}
+
+
+.scan-area{
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+
+// $resXXL: 1280px;
+// $resXL: 1170px;
+// $resL: 991px;
+// $resM: 768px;
+// $resS: 660px;
+// $resXS: 500px;
+// $resXXS: 435px;
+$resMin: 320px;
+@media screen and (max-width: $resMin) {
+    .auth-container {
+        width: 100%;
+    }
+}

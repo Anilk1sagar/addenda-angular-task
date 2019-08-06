@@ -1,0 +1,41 @@
+<mat-sidenav-container class="sidenav-container">
+	<mat-sidenav class="main-sidenav" #sidenav role="navigation" fxLayout="column">
+		I'm a drawer
+	</mat-sidenav>
+
+	<mat-sidenav-content fxLayout="column">
+
+		<mat-toolbar class="menu-container">
+			<mat-toolbar-row class="menu">
+
+				<div fxHide fxShow.xs>
+					<button mat-icon-button (click)="sidenav.toggle()" style="cursor: pointer">
+						<mat-icon aria-hidden="false" aria-label="menu icon">menu</mat-icon>
+					</button>
+				</div>
+
+				<a class="logo" href="/home"><img class="logo-img" src="assets/images/addenda-logo.png"></a>
+				<span fxFlex></span>
+				<div fxHide.xs>
+					<button mat-icon-button>
+						<mat-icon [matMenuTriggerFor]="optionMenu">
+							arrow_drop_down
+						</mat-icon>
+					</button>
+				</div>
+
+			</mat-toolbar-row>
+		</mat-toolbar>
+
+		<mat-menu #optionMenu="matMenu">
+			<button mat-menu-item (click)="_mLogOut()">Log Out</button>
+		</mat-menu>
+
+    	<!-- Router Outlet -->
+		<div fxLayout="column">
+			<router-outlet></router-outlet>
+    	</div>
+    
+	</mat-sidenav-content>
+
+</mat-sidenav-container>
