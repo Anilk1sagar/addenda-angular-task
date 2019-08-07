@@ -3,9 +3,9 @@ import { Observable, throwError } from 'rxjs';
 import { flatMap, map  } from 'rxjs/operators';
 
 // Services
-import { Postman, POSTMAN } from './postman';
-import { ApiService } from './common/api.service';
-import { AuthService } from '../auth';
+import { Postman, POSTMAN } from '../postman';
+import { ApiService } from '../common/api.service';
+import { AuthService } from '../../auth';
 
 // Models
 import { ModelPostLogin, ModelToken, ModelResLogin } from 'src/app/models';

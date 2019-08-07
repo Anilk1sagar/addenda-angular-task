@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Store, select } from '@ngrx/store';
+import { MatDialog } from '@angular/material';
 
-// Files
-import { UtilValidator } from './../../utils/validators';
 
-// Services
-//import { ServiceApiPasswordless } from './../../services/api/services';
+/* @ngrx */
+import { GetTweets } from './../../store/actions/tweet.actions';
+import { IAppState } from '../../store/state/app.state';
+import { selectTweetList } from '../../store/selectors/tweet.selector';
+import { Tweet } from 'src/app/models';
 
-// Models
-import { ModelToken } from '../../models';
+// Components
+import { TweetDialogComponent } from 'src/app/shared/components/tweet-dialog/tweet-dialog/tweet-dialog.component';
 
 
 @Component({
@@ -18,38 +20,53 @@ import { ModelToken } from '../../models';
 })
 export class HomeComponent implements OnInit {
 
-	_mFormGroup: FormGroup;
+	_mTweets: Tweet[];
+	tweets$ = this._store.pipe(select(selectTweetList));
 
     constructor(
-		private formBuilder: FormBuilder,
-		private utilValidator: UtilValidator,
-		//private serviceApiPasswordless: ServiceApiPasswordless
+		private _store: Store<IAppState>,
+		private dialog: MatDialog,
 	) { 
 
 	}
 
     ngOnInit() {
 
-		this._mFormGroup = this.formBuilder.group({
-			// customToken: ['', Validators.required],
-			email: ['', Validators.required],
-			password: ['', Validators.required],
-			// selectedGroup: ['', [Validators.required, Validators.minLength(5)]],
+		this._store.dispatch(new GetTweets());
+
+		// console.log(this.tweets$);
+
+		this.tweets$.subscribe((value) => {
+
+			console.log('value is: ', value);
+			if (value) {
+				this._mTweets = value;
+			}
+
+		}, (error) => {
+			console.error(error);
 		});
+
 	}
 	
 
-
-
-
-
-	/* ******************************************************************************************************************
-	*                                                    error
-	*/
-
-	getErrorMessageEmail() {
-		return this.utilValidator.getErrorMessageEmail(this._mFormGroup.controls['email']);
+	_mOnclickTweet(tweet: Tweet) {
+		console.log('onlcik tweet: ', tweet);
+		this.openDialog(tweet);
 	}
+
+	openDialog(data: Tweet): void {
+
+		const dialogRef = this.dialog.open(TweetDialogComponent, {
+			// height: "372px",
+		  	data: data
+		});
+	
+		dialogRef.afterClosed().subscribe(result => {
+		 	console.log('The dialog was closed', result);
+		});
+	}
+
 
 
 

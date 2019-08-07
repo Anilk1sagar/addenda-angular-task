@@ -20,9 +20,9 @@ export class Postman {
         };
     }
 
-    user() {
+    tweet() {
         return {
-            profile: '/users/' 
+            getAll: 'https://angular-sample-twitter.firebaseio.com/tweets.json' 
         }
     }
 

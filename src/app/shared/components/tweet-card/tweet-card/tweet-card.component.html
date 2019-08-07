@@ -1,0 +1,30 @@
+<div class="tweet-card" fxFlex>
+    <div fxLayout fxLayoutAlign="center" fxLayoutGap="20px">
+        <div fxFlex="8%">
+            <img class="avatar" src="{{tweet.user.profile_image_url_https}}" >
+        </div>
+        <div fxFlex>
+            <div class="user-data">
+                <a href="{{tweet.user.url}}" target="_blank"><h4>{{tweet.user.name}}</h4></a> 
+                <span class="username">@{{tweet.user.screen_name}}</span>
+            </div>
+            
+            <p> {{ tweet.text }}</p>
+
+            <div class="tweet-card-footer">
+                <button mat-icon-button class="icon-button">
+                    <mat-icon>chat_bubble_outline</mat-icon>
+                </button>
+                <button mat-icon-button class="icon-button">
+                    <mat-icon>favorite_border</mat-icon> <span>&nbsp;{{tweet.favorite_count}}</span>
+                </button>
+                <button mat-icon-button class="icon-button">
+                    <mat-icon>cached</mat-icon> <span>&nbsp;{{tweet.retweet_count}}</span>
+                </button>
+                <button mat-icon-button class="icon-button">
+                    <mat-icon>vertical_align_top</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -21,7 +21,7 @@ export class ApiService {
 		return throwError(error.error);
 	}
 
-	get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+	get(path: string, params: any = new HttpParams()): Observable<any> {
 		return this.http.get(`${Postman.API_URL}${path}`, { params: params, headers : this.headers })
 		.pipe(catchError(this.formatErrors));
 	}

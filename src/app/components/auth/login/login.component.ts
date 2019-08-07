@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material';
 // Servcies
 import { AuthService } from 'src/app/services/auth';
 import { ModelToken, ModelPostLogin, ModelResLogin } from 'src/app/models';
-import { ApiAuthService } from 'src/app/services/api/api-auth.service';
+import { ApiAuthService } from 'src/app/services/api/services/api-auth.service';
 import { LocalStorageService } from 'src/app/services/local/local-storage.service';
 
 @Component({
@@ -57,10 +57,12 @@ export class LoginComponent implements OnInit {
 		let value = this._mFormGroup.getRawValue()
 		console.log('onsubmit: ', value);
 
-		const modelData = new ModelPostLogin();
-		modelData.email = value.email;
-		modelData.password = value.password;
-		modelData.returnSecureToken = true;
+		const modelData: ModelPostLogin = {
+			email: value.email,
+			password: value.password,
+			returnSecureToken: true
+		};
+
 		this.loginServer(modelData);
 	}
 

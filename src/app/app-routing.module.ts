@@ -26,6 +26,12 @@ const routes: Routes = [
                 loadChildren: './components/auth/auth.module#AuthModule',
                 data: { preload: true, delay: false },
             },
+
+            {
+                path: 'test',
+                loadChildren: './components/test/test.module#TestModule',
+                data: { preload: true, delay: false },
+            },
         ]
     },
 
@@ -39,21 +45,15 @@ const routes: Routes = [
                 loadChildren: './components/home/home.module#HomeModule',
                 data: { preload: true, delay: false },
             },
+            // Default
+            { 
+                path: '**',
+                loadChildren: './components/home/home.module#HomeModule', 
+                data: { preload: true, delay: false },    
+            }
         ]
     },
 
-
-    {
-        path: '',
-        component: BlankContainerComponent,
-        children: [
-            {
-                path: 'test',
-                loadChildren: './components/test/test.module#TestModule',
-                data: { preload: true, delay: false },
-            },
-        ]
-    },
 
 
 ];
