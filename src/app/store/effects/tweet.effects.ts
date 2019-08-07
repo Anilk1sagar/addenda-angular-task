@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Store, select } from '@ngrx/store';
 import { of } from 'rxjs';
-import { switchMap, map, withLatestFrom } from 'rxjs/operators';
+import { switchMap, map, withLatestFrom, catchError } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 // Services
 import { IAppState } from '../state/app.state';
@@ -37,7 +38,19 @@ export class TweetEffects {
 	@Effect()
 	getTweets$ = this._actions$.pipe(
 		ofType<GetTweets>(ETweetActions.GetTweets),
-		switchMap(() => this.apiTweetsService.getTweets()),
+		switchMap(() => this.apiTweetsService.getTweets().pipe(
+			map((res: Tweet[]) => {
+
+				console.log('Api tweets res: ', res);
+				return res;
+			}),
+			catchError((error) => {
+
+				console.error('Api res error: ', error);
+				this.snackBar.open(error.error, null, {duration: 5000});
+				return null;
+			})
+		)),
 		switchMap((res: Tweet[]) => {
 			// console.log('Api tweets res: ', res);
 			return of(new GetTweetsSuccess(res))
@@ -47,6 +60,7 @@ export class TweetEffects {
   constructor(
     private apiTweetsService: ApiTweetsService,
     private _actions$: Actions,
-    private _store: Store<IAppState>
+	private _store: Store<IAppState>,
+	public snackBar: MatSnackBar,
   ) {}
 }
