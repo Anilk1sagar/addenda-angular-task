@@ -1,6 +1,6 @@
 <div class="auth-container" fxLayout="column" >
 
-    <img class="logo" src="assets/images/addenda-logo.png"><br>
+    <img class="logo" src="assets/images/addenda-logo.png"><br><br>
 
     <form [formGroup]="_mFormGroup" (ngSubmit)="_mOnSubmit()">
         <div fxLayout="column">
@@ -13,15 +13,14 @@
           </mat-form-field>
 
           <div fxLayout="row">
-              <button mat-raised-button color="primary" type="submit" [disabled]="!_mFormGroup.valid" style="width: 100%">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!_mFormGroup.valid || _mInProgress" style="width: 100%">
                 Login
               </button>
           </div>
         </div>
     </form>
-
-    <div *ngIf="_mIsVerifying">
-        <p>Connecting...</p><br>
+    <br>
+    <div *ngIf="_mInProgress">
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
 
