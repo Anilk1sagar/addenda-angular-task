@@ -8,10 +8,10 @@ export interface IAppState {
 	tweets: ITweetState;
 }
 
-export const initialAppState: IAppState = {
-	tweets: initialTweetState,
-};
 
 export function getInitialState(): IAppState {
-  	return initialAppState;
+  	return {
+		tweets: initialTweetState,
+
+	};
 }

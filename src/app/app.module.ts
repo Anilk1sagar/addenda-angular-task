@@ -4,18 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-// @ngrx
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { appReducers } from './store/reducers/app.reducers';
-import { TweetEffects } from './store/effects/tweet.effects';
 
 // Modules
-import { environment } from '../environments/environment';
 import { ServicesModule } from './services/services.module';
 import { ApiModule } from './services/api/api.module';
+import { NgrxStoreModule } from './store/ngrx-store.module';
 import { ContainersModule } from './containers/containers.module';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -32,17 +25,12 @@ import { AppComponent } from './app.component';
 	],
 	imports: [
 		BrowserModule,
-		BrowserModule,
 		FormsModule,
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		FlexLayoutModule,
 		HttpClientModule,
-		StoreModule.forRoot(appReducers),
-		EffectsModule.forRoot([TweetEffects,]),
-		StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
-		!environment.production ? StoreDevtoolsModule.instrument() : [],
-
+		NgrxStoreModule,
 		ServicesModule,
 		ApiModule.forRoot(),
 		ContainersModule,

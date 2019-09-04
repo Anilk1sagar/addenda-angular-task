@@ -5,12 +5,13 @@ import { of } from 'rxjs';
 import { switchMap, map, withLatestFrom, catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 
-// Services
+// Store
 import { IAppState } from '../state/app.state';
 import {
 	ETweetActions,
 	GetTweets,
 	GetTweetsSuccess,
+	GetTweetsSuccessFail,
 } from '../actions/tweet.actions';
 import { selectTweetList } from '../selectors/tweet.selector';
 
@@ -18,13 +19,20 @@ import { selectTweetList } from '../selectors/tweet.selector';
 import { ApiTweetsService } from '../../services/api/services/api-tweets.service';
 
 // Models
-import { TweetHttp, Tweet } from '../../models';
+import { Tweet } from '../../models';
 
 
 @Injectable()
 export class TweetEffects {
 
-	// @Effect()
+  constructor(
+    private apiTweetsService: ApiTweetsService,
+    private _actions$: Actions,
+	private _store: Store<IAppState>,
+	public snackBar: MatSnackBar,
+  ) {}
+
+  // @Effect()
 	// getUser$ = this._actions$.pipe(
 	// 	ofType<GetTweet>(ETweetActions.GetTweet),
 	// 	map(action => action.payload),
@@ -35,32 +43,25 @@ export class TweetEffects {
 	// 	})
 	// );
 
+
 	@Effect()
 	getTweets$ = this._actions$.pipe(
 		ofType<GetTweets>(ETweetActions.GetTweets),
-		switchMap(() => this.apiTweetsService.getTweets().pipe(
-			map((res: Tweet[]) => {
-
-				console.log('Api tweets res: ', res);
-				return res;
-			}),
-			catchError((error) => {
-
-				console.error('Api res error: ', error);
-				this.snackBar.open(error.error, null, {duration: 5000});
-				return null;
-			})
-		)),
-		switchMap((res: Tweet[]) => {
-			// console.log('Api tweets res: ', res);
-			return of(new GetTweetsSuccess(res))
+		switchMap(() => {
+			return this.apiTweetsService.getTweets()
+			.pipe(
+				map((tweets: Tweet[]) => {
+					console.log('Api tweets res: ', tweets);
+					return new GetTweetsSuccess(tweets);
+				}),
+				catchError((error) => {
+					console.error('Api res error: ', error);
+					this.snackBar.open(error.error, null, {duration: 5000});
+					// return of(new GetTweetsSuccessFail(error));
+					return null;
+				})
+			)
 		})
 	);
 
-  constructor(
-    private apiTweetsService: ApiTweetsService,
-    private _actions$: Actions,
-	private _store: Store<IAppState>,
-	public snackBar: MatSnackBar,
-  ) {}
 }

@@ -21,7 +21,6 @@ import { TweetDialogComponent } from 'src/app/shared/components/tweet-dialog/twe
 export class HomeComponent implements OnInit {
 
 	_mTweets: Tweet[];
-	tweets$ = this._store.pipe(select(selectTweetList));
 
     constructor(
 		private _store: Store<IAppState>,
@@ -33,25 +32,19 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
 
 		this._store.dispatch(new GetTweets());
-
-		// console.log(this.tweets$);
-
-		this.tweets$.subscribe((value) => {
-
-			console.log('value is: ', value);
-			if (value) {
-				this._mTweets = value;
+		this._store.pipe(select(selectTweetList)).subscribe((tweets) => {
+			console.log('helo tweets: ', tweets);
+			if (tweets) {
+				this._mTweets = tweets;
 			}
-
 		}, (error) => {
-			console.error(error);
+			console.error('error: ', error);
 		});
-
 	}
 	
 
 	_mOnclickTweet(tweet: Tweet) {
-		console.log('onlcik tweet: ', tweet);
+		// console.log('onlcik tweet: ', tweet);
 		this.openDialog(tweet);
 	}
 
@@ -63,7 +56,7 @@ export class HomeComponent implements OnInit {
 		});
 	
 		dialogRef.afterClosed().subscribe(result => {
-		 	console.log('The dialog was closed', result);
+		 	// console.log('The dialog was closed', result);
 		});
 	}
 

@@ -1,11 +1,10 @@
 // Actions
-import { ETweetActions } from './../actions/tweet.actions';
-import { TweetActions } from '../actions/tweet.actions';
+import { ETweetActions, TweetActions } from './../actions/tweet.actions';
 
 // State
 import { initialTweetState, ITweetState } from '../state/tweet.state';
 
-export const tweetReducers = (state = initialTweetState, action: TweetActions): ITweetState => {
+export const TweetReducers = (state = initialTweetState, action: TweetActions): ITweetState => {
 
 	switch (action.type) {
 		case ETweetActions.GetTweetsSuccess: {
