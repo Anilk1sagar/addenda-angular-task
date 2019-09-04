@@ -11,9 +11,9 @@ import {
 	ETweetActions,
 	GetTweets,
 	GetTweetsSuccess,
-	GetTweetsSuccessFail,
+	GetTweetsFail,
 } from '../actions/tweet.actions';
-import { selectTweetList } from '../selectors/tweet.selector';
+import { getAllTweets } from '../selectors/tweet.selector';
 
 // Api Services
 import { ApiTweetsService } from '../../services/api/services/api-tweets.service';
@@ -51,14 +51,12 @@ export class TweetEffects {
 			return this.apiTweetsService.getTweets()
 			.pipe(
 				map((tweets: Tweet[]) => {
-					console.log('Api tweets res: ', tweets);
+					// console.log('Api tweets res: ', tweets);
 					return new GetTweetsSuccess(tweets);
 				}),
 				catchError((error) => {
-					console.error('Api res error: ', error);
-					this.snackBar.open(error.error, null, {duration: 5000});
-					// return of(new GetTweetsSuccessFail(error));
-					return null;
+					// console.error('Api res error: ', error);
+					return of(new GetTweetsFail(error));
 				})
 			)
 		})

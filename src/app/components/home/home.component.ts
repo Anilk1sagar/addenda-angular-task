@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 
 
 /* @ngrx */
 import { GetTweets } from './../../store/actions/tweet.actions';
 import { IAppState } from '../../store/state/app.state';
-import { selectTweetList } from '../../store/selectors/tweet.selector';
+import { getAllTweets, getTweetsLoading, getTweetsLoaded, getTweetsError } from '../../store/selectors/tweet.selector';
 import { Tweet } from 'src/app/models';
 
 // Components
@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     constructor(
 		private _store: Store<IAppState>,
 		private dialog: MatDialog,
+		public snackBar: MatSnackBar,
 	) { 
 
 	}
@@ -32,14 +33,26 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
 
 		this._store.dispatch(new GetTweets());
-		this._store.pipe(select(selectTweetList)).subscribe((tweets) => {
+		this._store.pipe(select(getAllTweets)).subscribe((tweets) => {
 			console.log('helo tweets: ', tweets);
 			if (tweets) {
 				this._mTweets = tweets;
 			}
-		}, (error) => {
-			console.error('error: ', error);
 		});
+
+		// this._store.pipe(select(getTweetsError)).subscribe((error: any) => {
+		// 	console.log('helo error: ', error);
+		// 	if (error) {
+		// 		this.snackBar.open(error.error, null, {duration: 5000});
+		// 	}
+		// });
+
+		this._store.subscribe((state) => {
+			console.log('state', state);
+			if (state.tweets.data) this._mTweets = state.tweets.data;
+			if (state.tweets.error) this.snackBar.open(state.tweets.error.error, null, {duration: 5000});
+		})
+
 	}
 	
 

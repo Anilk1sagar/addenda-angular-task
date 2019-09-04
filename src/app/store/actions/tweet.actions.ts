@@ -6,7 +6,7 @@ import { Tweet } from '../../models/tweet.model';
 export enum ETweetActions {
     GetTweets = '[Tweet] Get Tweets',
     GetTweetsSuccess = '[Tweet] Get Tweets Success',
-    GetTweetsSuccessFail = '[Tweet] Get Tweets Success Fail'
+    GetTweetsFail = '[Tweet] Get Tweets Fail'
 }
 
 export class GetTweets implements Action {
@@ -18,10 +18,13 @@ export class GetTweetsSuccess implements Action {
     constructor(public payload: Tweet[]) {}
 }
 
-export class GetTweetsSuccessFail implements Action {
-    public readonly type = ETweetActions.GetTweetsSuccessFail;
+export class GetTweetsFail implements Action {
+    public readonly type = ETweetActions.GetTweetsFail;
     constructor(public payload: Error) {}
 }
 
 
-export type TweetActions = GetTweets | GetTweetsSuccess | GetTweetsSuccessFail;
+export type TweetActions = 
+    GetTweets 
+    | GetTweetsSuccess 
+    | GetTweetsFail;

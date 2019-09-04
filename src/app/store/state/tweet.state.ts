@@ -1,11 +1,15 @@
 import { Tweet } from '../../models/tweet.model';
 
 export interface ITweetState {
-    tweets: Tweet[];
-    selectedTweet: Tweet;
+    data: Tweet[];
+    loading: boolean;
+    loadded: boolean;
+    error: any;
 }
 
 export const initialTweetState: ITweetState = {
-	tweets: null,
-	selectedTweet: null
+	data: null,
+    loading: false,
+    loadded: false,
+    error: null
 };
