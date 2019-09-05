@@ -32,7 +32,7 @@ export class ApiTweetsService {
         const params = {
             // offset: offset,
 			// limit: limit,
-			// auth: token.idToken
+			auth: token.idToken
         };
 
         const urlPath = this.postman.tweet().getAll;

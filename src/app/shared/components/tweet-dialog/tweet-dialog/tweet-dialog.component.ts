@@ -22,7 +22,7 @@ export class TweetDialogComponent implements OnInit {
 	) { 
 
 		this._mTweet = this.data;
-		console.log('dialog data: ', this._mTweet);
+		// console.log('dialog data: ', this._mTweet);
 	}
 
 	ngOnInit() {

@@ -6,21 +6,21 @@ import { ITweetState } from '../state/tweet.state';
 
 const selectTweets = (state: IAppState) => state.tweets;
 
-export const getAllTweets = createSelector(
+export const selectAllTweets = createSelector(
 	selectTweets,
 	(state: ITweetState) => state.data
 );
-export const getTweetsLoading = createSelector(
+export const selectTweetsLoading = createSelector(
 	selectTweets,
 	(state: ITweetState) => state.loading
 );
 
-export const getTweetsLoaded = createSelector(
+export const selectTweetsLoaded = createSelector(
 	selectTweets,
 	(state: ITweetState) => state.loadded
 );
 
-export const getTweetsError = createSelector(
+export const selectTweetsError = createSelector(
 	selectTweets,
 	(state: ITweetState) => state.error
 );

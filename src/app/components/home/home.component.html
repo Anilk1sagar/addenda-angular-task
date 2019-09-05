@@ -1,14 +1,14 @@
 <div class="container">
     <h2 style="text-align: center">Tweets</h2>
 
-    <div class="tweets-container" *ngIf="_mTweets" 
+    <div class="tweets-container" *ngIf="_mTweets$ | async" 
         fxLayout="column"
         fxLayout.xs="column"
         fxLayoutAlign="center"
         fxLayoutGap="20px"
         fxLayoutGap.xs="0">
 
-        <app-tweet-card class="tweet-card"  fxFlex *ngFor="let tweet of _mTweets" [model]="tweet" (click)="_mOnclickTweet(tweet)">
+        <app-tweet-card class="tweet-card"  fxFlex *ngFor="let tweet of _mTweets$ | async" [model]="tweet" (click)="_mOnclickTweet(tweet)">
         </app-tweet-card>
     </div>
 

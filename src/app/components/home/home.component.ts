@@ -1,12 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { MatDialog, MatSnackBar } from '@angular/material';
-
+import { Observable } from 'rxjs';
 
 /* @ngrx */
 import { GetTweets } from './../../store/actions/tweet.actions';
 import { IAppState } from '../../store/state/app.state';
-import { getAllTweets, getTweetsLoading, getTweetsLoaded, getTweetsError } from '../../store/selectors/tweet.selector';
+import { 
+	selectAllTweets, 
+	selectTweetsLoading, 
+	selectTweetsLoaded,
+	selectTweetsError 
+} from '../../store/selectors/tweet.selector';
+
+// Models
 import { Tweet } from 'src/app/models';
 
 // Components
@@ -22,6 +29,10 @@ export class HomeComponent implements OnInit {
 
 	_mTweets: Tweet[];
 
+	// Second Method
+	_mTweets$: Observable<Tweet[]>;
+	_mTweetsError$: Observable<any>;
+
     constructor(
 		private _store: Store<IAppState>,
 		private dialog: MatDialog,
@@ -33,12 +44,14 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
 
 		this._store.dispatch(new GetTweets());
-		this._store.pipe(select(getAllTweets)).subscribe((tweets) => {
-			console.log('helo tweets: ', tweets);
-			if (tweets) {
-				this._mTweets = tweets;
-			}
-		});
+
+		/* First Method */
+		// this._store.pipe(select(getAllTweets)).subscribe((tweets) => {
+		// 	console.log('helo tweets: ', tweets);
+		// 	if (tweets) {
+		// 		this._mTweets = tweets;
+		// 	}
+		// });
 
 		// this._store.pipe(select(getTweetsError)).subscribe((error: any) => {
 		// 	console.log('helo error: ', error);
@@ -47,10 +60,17 @@ export class HomeComponent implements OnInit {
 		// 	}
 		// });
 
-		this._store.subscribe((state) => {
-			console.log('state', state);
-			if (state.tweets.data) this._mTweets = state.tweets.data;
-			if (state.tweets.error) this.snackBar.open(state.tweets.error.error, null, {duration: 5000});
+		// this._store.subscribe((state) => {
+		// 	console.log('state', state);
+		// 	if (state.tweets.data) this._mTweets = state.tweets.data;
+		// 	if (state.tweets.error) this.snackBar.open(state.tweets.error.error, null, {duration: 5000});
+		// });
+
+		/* Second Method */
+		this._mTweets$ = this._store.pipe(select(selectAllTweets));
+		this._mTweetsError$ = this._store.pipe(select(selectTweetsError));
+		this._mTweetsError$.subscribe((error) => {
+			if (error) this.snackBar.open(error.error, null, {duration: 5000});
 		})
 
 	}
@@ -76,8 +96,8 @@ export class HomeComponent implements OnInit {
 
 
 
-	/* ******************************************************************************************************************
-	*                                                    Request Api Server
+	/*************************************************************************************************
+	*                                          Request Api Server
 	*/
 
 

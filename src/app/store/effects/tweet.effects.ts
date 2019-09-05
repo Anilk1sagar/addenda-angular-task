@@ -13,7 +13,6 @@ import {
 	GetTweetsSuccess,
 	GetTweetsFail,
 } from '../actions/tweet.actions';
-import { getAllTweets } from '../selectors/tweet.selector';
 
 // Api Services
 import { ApiTweetsService } from '../../services/api/services/api-tweets.service';
