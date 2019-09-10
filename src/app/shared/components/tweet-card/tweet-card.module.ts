@@ -4,7 +4,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule, MatIconModule, MatDialogModule } from '@angular/material';
 
 // Components
-import { TweetCardComponent } from './tweet-card/tweet-card.component';
+import { TweetCardComponent } from './tweet-card.component';
 
 @NgModule({
     declarations: [  TweetCardComponent ],

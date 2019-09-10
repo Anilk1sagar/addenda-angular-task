@@ -7,17 +7,14 @@ import { Observable } from 'rxjs';
 import { GetTweets } from './../../store/actions/tweet.actions';
 import { IAppState } from '../../store/reducers/app.reducers';
 import { 
-	selectAllTweets, 
-	selectTweetsLoading, 
-	selectTweetsLoaded,
-	selectTweetsError 
+	selectAllTweets, selectTweetsLoading, selectTweetsLoaded,selectTweetsError 
 } from '../../store/selectors/tweet.selector';
 
 // Models
 import { Tweet } from 'src/app/models';
 
 // Components
-import { TweetDialogComponent } from 'src/app/shared/components/tweet-dialog/tweet-dialog/tweet-dialog.component';
+import { TweetDialogComponent } from 'src/app/shared/components/tweet-dialog/tweet-dialog.component';
 
 
 @Component({
