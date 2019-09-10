@@ -1,8 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules, ExtraOptions } from '@angular/router';
 
 // Services
-import { AuthGuardService } from './services/guards/auth.guard';
+import { AuthGuardService } from './core/services/guards/auth.guard';
 import { AppPreloadingStrategy } from './app_preloading_strategy';
 
 // Containers Components
@@ -58,7 +58,7 @@ const routes: Routes = [
 
 ];
 
-const routingOptions = {
+const routingOptions: ExtraOptions = {
     preloadingStrategy: AppPreloadingStrategy,
     useHash: false,
     enableTracing: false

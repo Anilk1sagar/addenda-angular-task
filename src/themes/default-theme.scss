@@ -1,0 +1,9 @@
+$as-primary: mat-palette($mat-indigo, 800, 300, 900);
+$as-accent: mat-palette($mat-amber, A200);
+$as-warn: mat-palette($mat-red, 500);
+
+$as-theme: mat-light-theme(
+    $as-primary, 
+    $as-accent, 
+    $as-warn
+);

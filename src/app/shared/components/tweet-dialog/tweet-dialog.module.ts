@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Components
-import { TweetDialogComponent } from './tweet-dialog/tweet-dialog.component';
+import { TweetDialogComponent } from './tweet-dialog.component';
 import { TweetCardModule } from '../tweet-card/tweet-card.module';
 
 @NgModule({
