@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 /* @ngrx */
 import { GetTweets } from './../../store/actions/tweet.actions';
-import { IAppState } from '../../store/state/app.state';
+import { IAppState } from '../../store/reducers/app.reducers';
 import { 
 	selectAllTweets, 
 	selectTweetsLoading, 
@@ -70,7 +70,11 @@ export class HomeComponent implements OnInit {
 		this._mTweets$ = this._store.pipe(select(selectAllTweets));
 		this._mTweetsError$ = this._store.pipe(select(selectTweetsError));
 		this._mTweetsError$.subscribe((error) => {
-			if (error) this.snackBar.open(error.error, null, {duration: 5000});
+			if (error) {
+				setTimeout(() => {
+					this.snackBar.open(error.error, null, {duration: 5000});
+				}, 0);	
+			};
 		})
 
 	}

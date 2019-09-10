@@ -1,8 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
 // Interfaces
-import { IAppState } from '../state/app.state';
-import { ITweetState } from '../state/tweet.state';
+import { IAppState } from '../reducers/app.reducers';
+import { ITweetState } from '../reducers/tweet.reducers';
 
 const selectTweets = (state: IAppState) => state.tweets;
 

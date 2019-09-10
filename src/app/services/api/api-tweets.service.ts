@@ -2,10 +2,10 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 
 // Services
-import { ApiService } from '../common/api.service';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { POSTMAN, Postman } from '../postman';
-import { LocalStorageService } from '../../local/local-storage.service';
+import { ApiService } from './common/api.service';
+import { AuthService } from '../auth/auth.service';
+import { POSTMAN, Postman } from './common/postman';
+import { LocalStorageService } from '../local/local-storage.service';
 
 // Models
 import { Tweet } from 'src/app/models/tweet.model';

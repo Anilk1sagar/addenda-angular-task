@@ -4,22 +4,22 @@ import { Action } from '@ngrx/store';
 import { Tweet } from '../../models/tweet.model';
 
 export enum ETweetActions {
-    GetTweets = '[Tweet] Get Tweets',
-    GetTweetsSuccess = '[Tweet] Get Tweets Success',
-    GetTweetsFail = '[Tweet] Get Tweets Fail'
+    GET_TWEETS = '[Tweet] GET_TWEETS',
+    GET_TWEETS_SUCCESS = '[Tweet] GET_TWEETS_SUCCESS',
+    GET_TWEETS_FAIL = '[Tweet] GET_TWEETS_FAIL'
 }
 
 export class GetTweets implements Action {
-    public readonly type = ETweetActions.GetTweets;
+    public readonly type = ETweetActions.GET_TWEETS;
 }
 
 export class GetTweetsSuccess implements Action {
-    public readonly type = ETweetActions.GetTweetsSuccess;
+    public readonly type = ETweetActions.GET_TWEETS_SUCCESS;
     constructor(public payload: Tweet[]) {}
 }
 
 export class GetTweetsFail implements Action {
-    public readonly type = ETweetActions.GetTweetsFail;
+    public readonly type = ETweetActions.GET_TWEETS_FAIL;
     constructor(public payload: Error) {}
 }
 

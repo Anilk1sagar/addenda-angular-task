@@ -1,19 +1,32 @@
+import { Tweet } from '../../models/tweet.model';
 // Actions
 import { ETweetActions, TweetActions } from './../actions/tweet.actions';
 
 // State
-import { initialTweetState, ITweetState } from '../state/tweet.state';
+export interface ITweetState {
+    data: Tweet[];
+    loading: boolean;
+    loadded: boolean;
+    error: any;
+}
+
+export const initialTweetState: ITweetState = {
+	data: null,
+    loading: false,
+    loadded: false,
+    error: null
+};
 
 export const TweetReducers = (state = initialTweetState, action: TweetActions): ITweetState => {
 
 	switch (action.type) {
-		case ETweetActions.GetTweets: {
+		case ETweetActions.GET_TWEETS: {
 			return {
 				...state,
 				loading: true
 			};
 		}
-		case ETweetActions.GetTweetsSuccess: {
+		case ETweetActions.GET_TWEETS_SUCCESS: {
 			return {
 				...state,
 				loading: false,
@@ -21,7 +34,7 @@ export const TweetReducers = (state = initialTweetState, action: TweetActions): 
 				data: action.payload
 			};
 		}
-		case ETweetActions.GetTweetsFail: {
+		case ETweetActions.GET_TWEETS_FAIL: {
 			return {
 				...state,
 				loading: false,

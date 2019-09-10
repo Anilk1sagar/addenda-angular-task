@@ -6,7 +6,7 @@ import { switchMap, map, withLatestFrom, catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material';
 
 // Store
-import { IAppState } from '../state/app.state';
+import { IAppState } from '../reducers/app.reducers';
 import {
 	ETweetActions,
 	GetTweets,
@@ -15,7 +15,7 @@ import {
 } from '../actions/tweet.actions';
 
 // Api Services
-import { ApiTweetsService } from '../../services/api/services/api-tweets.service';
+import { ApiTweetsService } from '../../services/api/api-tweets.service';
 
 // Models
 import { Tweet } from '../../models';
@@ -45,7 +45,7 @@ export class TweetEffects {
 
 	@Effect()
 	getTweets$ = this._actions$.pipe(
-		ofType<GetTweets>(ETweetActions.GetTweets),
+		ofType<GetTweets>(ETweetActions.GET_TWEETS),
 		switchMap(() => {
 			return this.apiTweetsService.getTweets()
 			.pipe(

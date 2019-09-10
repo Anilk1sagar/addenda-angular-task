@@ -7,7 +7,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Modules
 import { ServicesModule } from './services/services.module';
-import { ApiModule } from './services/api/api.module';
 import { NgrxStoreModule } from './store/ngrx-store.module';
 import { ContainersModule } from './containers/containers.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -32,7 +31,6 @@ import { AppComponent } from './app.component';
 		HttpClientModule,
 		NgrxStoreModule,
 		ServicesModule,
-		ApiModule.forRoot(),
 		ContainersModule,
 		AppRoutingModule
 	],

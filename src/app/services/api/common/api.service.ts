@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 // Files
-import { Postman, POSTMAN } from '../postman';
+import { Postman, POSTMAN } from './postman';
 
 
 @Injectable({

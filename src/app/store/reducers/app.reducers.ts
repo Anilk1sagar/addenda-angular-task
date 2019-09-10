@@ -1,13 +1,24 @@
 import { ActionReducerMap } from '@ngrx/store';
 
 // Reducers
-import { routerReducer } from '@ngrx/router-store';
-import { TweetReducers } from './tweet.reducers';
+import { RouterReducerState, routerReducer } from '@ngrx/router-store';
+import { ITweetState, initialTweetState, TweetReducers } from './tweet.reducers';
 
-// State
-import { IAppState } from '../state/app.state';
 
+export interface IAppState {
+	router?: RouterReducerState;
+	tweets: ITweetState;
+}
+
+// App Reducers
 export const appReducers: ActionReducerMap<IAppState, any> = {
-    router: routerReducer,
-    tweets: TweetReducers,
+  router: routerReducer,
+  tweets: TweetReducers,
 };
+
+export function getInitialState(): IAppState {
+  return {
+    tweets: initialTweetState,
+
+  };
+}

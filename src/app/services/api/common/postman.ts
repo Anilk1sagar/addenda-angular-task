@@ -1,5 +1,5 @@
 import { Injectable, InjectionToken } from '@angular/core';
-import { environment } from '../../../environments/environment';
+import { environment } from 'src/environments/environment';
 
 export let POSTMAN = new InjectionToken('app.postman');
 

@@ -1,5 +1,4 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -7,6 +6,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // Services
 import { InterceptorAuthService } from './interceptors';
+import { Postman, POSTMAN } from './api/common/postman';
 
 @NgModule({
     imports: [
@@ -20,7 +20,8 @@ import { InterceptorAuthService } from './interceptors';
     ],
     providers: [
         // Interceptors
-        { provide: HTTP_INTERCEPTORS, useClass: InterceptorAuthService, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: InterceptorAuthService, multi: true },
+        { provide: POSTMAN, useClass: Postman }
     ]
 })
 

@@ -1,5 +1,5 @@
-export interface Tweet {
-    id: number;
-    name: string;
+export class Tweet {
+    public id: number;
+    public name: string;
 }
   

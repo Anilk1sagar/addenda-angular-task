@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material';
 // Servcies
 import { AuthService } from 'src/app/services/auth';
 import { ModelToken, ModelPostLogin, ModelResLogin } from 'src/app/models';
-import { ApiAuthService } from 'src/app/services/api/services/api-auth.service';
+import { ApiAuthService } from 'src/app/services/api/api-auth.service';
 import { LocalStorageService } from 'src/app/services/local/local-storage.service';
 
 @Component({
