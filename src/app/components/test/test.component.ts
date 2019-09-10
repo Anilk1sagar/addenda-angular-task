@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IAppState } from 'src/app/store/reducers/app.reducers';
+import { ChangeCurrentTheme } from 'src/app/store/actions/config.actions';
 
 @Component({
   selector: 'app-test',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _store: Store<IAppState>,
+  ) { }
 
   ngOnInit() {
+  }
+
+  onChangeTheme(theme: string) {
+    this._store.dispatch(new ChangeCurrentTheme(theme));
   }
 
 }

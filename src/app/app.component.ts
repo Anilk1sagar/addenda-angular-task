@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { OverlayContainer} from '@angular/cdk/overlay';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from './store/reducers/app.reducers';
+import { selectCurrentTheme } from './store/selectors/config.selector';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +10,22 @@ import { OverlayContainer} from '@angular/cdk/overlay';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-task-addenda';
 
+  title = 'angular-task-addenda';
   themeClass = 'default-theme';
 
   constructor(
-    private overlayContainer: OverlayContainer
+    private overlayContainer: OverlayContainer,
+		private _store: Store<IAppState>,
   ) {}
 
   ngOnInit(): void {
 
     this.overlayContainer.getContainerElement().classList.add(this.themeClass);
-    // this.theme$ = this._store.pipe(select(selectEffectiveTheme));
-
+    this._store.pipe(select(selectCurrentTheme)).subscribe((theme) => {
+      this.themeClass = theme;
+      this.onThemeChange(this.themeClass);
+    });
   }
 
   onThemeChange(theme: string) {
