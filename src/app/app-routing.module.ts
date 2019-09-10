@@ -1,5 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules, ExtraOptions } from '@angular/router';
 
 // Services
 import { AuthGuardService } from './core/services/guards/auth.guard';
@@ -58,7 +58,7 @@ const routes: Routes = [
 
 ];
 
-const routingOptions = {
+const routingOptions: ExtraOptions = {
     preloadingStrategy: AppPreloadingStrategy,
     useHash: false,
     enableTracing: false
