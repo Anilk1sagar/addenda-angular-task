@@ -18,7 +18,7 @@ import {
 import { ApiTweetsService } from '../../services/api/api-tweets.service';
 
 // Models
-import { Tweet } from '../../models';
+import { Tweet } from 'src/app/models';
 
 
 @Injectable()

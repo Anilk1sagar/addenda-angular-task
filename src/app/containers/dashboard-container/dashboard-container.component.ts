@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 // Services
-import { AuthService } from 'src/app/services/auth';
+import { AuthService } from 'src/app/core/services/auth';
 
 @Component({
   selector: 'app-dashboard-container',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { IAppState } from 'src/app/store/reducers/app.reducers';
-import { ChangeCurrentTheme } from 'src/app/store/actions/config.actions';
+import { IAppState } from 'src/app/core/store/reducers/app.reducers';
+import { ChangeCurrentTheme } from 'src/app/core/store/actions/config.actions';
 
 @Component({
   selector: 'app-test',

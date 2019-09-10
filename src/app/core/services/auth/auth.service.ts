@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { LocalStorageService } from './../local/local-storage.service';
 
 // Models
-import { ModelToken } from '../../models';
+import { ModelToken } from 'src/app/models';
 
 
 @Injectable({

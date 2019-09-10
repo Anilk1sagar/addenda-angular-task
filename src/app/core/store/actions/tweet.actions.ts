@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 
 // Models
-import { Tweet } from '../../models/tweet.model';
+import { Tweet } from 'src/app/models/tweet.model';
 
 export enum ETweetActions {
     GET_TWEETS = '[Tweet] GET_TWEETS',

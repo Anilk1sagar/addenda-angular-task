@@ -4,11 +4,11 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 
 /* @ngrx */
-import { GetTweets } from './../../store/actions/tweet.actions';
-import { IAppState } from '../../store/reducers/app.reducers';
+import { GetTweets } from 'src/app/core/store/actions/tweet.actions';
+import { IAppState } from 'src/app/core/store/reducers/app.reducers';
 import { 
 	selectAllTweets, selectTweetsLoading, selectTweetsLoaded,selectTweetsError 
-} from '../../store/selectors/tweet.selector';
+} from 'src/app/core/store/selectors/tweet.selector';
 
 // Models
 import { Tweet } from 'src/app/models';

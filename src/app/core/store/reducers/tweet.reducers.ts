@@ -1,4 +1,4 @@
-import { Tweet } from '../../models/tweet.model';
+import { Tweet } from 'src/app/models/tweet.model';
 // Actions
 import { ETweetActions, TweetActions } from './../actions/tweet.actions';
 

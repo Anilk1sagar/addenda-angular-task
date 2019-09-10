@@ -7,7 +7,7 @@ import { mergeMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 
 // Models
-import { ModelToken } from '../../models';
+import { ModelToken } from 'src/app/models';
 
 
 @Injectable()

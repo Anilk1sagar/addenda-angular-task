@@ -6,14 +6,13 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 // Modules
-import { ServicesModule } from './services/services.module';
-import { NgrxStoreModule } from './store/ngrx-store.module';
+import { CoreModule } from './core/core.module';
 import { ContainersModule } from './containers/containers.module';
 import { AppRoutingModule } from './app-routing.module';
 
 // Services
 import { AppPreloadingStrategy } from './app_preloading_strategy';
-import { AuthGuardService } from './services/guards/auth.guard';
+import { AuthGuardService } from './core/services/guards/auth.guard';
 
 // Components
 import { AppComponent } from './app.component';
@@ -29,8 +28,7 @@ import { AppComponent } from './app.component';
 		BrowserAnimationsModule,
 		FlexLayoutModule,
 		HttpClientModule,
-		NgrxStoreModule,
-		ServicesModule,
+		CoreModule,
 		ContainersModule,
 		AppRoutingModule
 	],

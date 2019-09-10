@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { OverlayContainer} from '@angular/cdk/overlay';
 import { Store, select } from '@ngrx/store';
-import { IAppState } from './store/reducers/app.reducers';
-import { selectCurrentTheme } from './store/selectors/config.selector';
+import { IAppState } from './core/store/reducers/app.reducers';
+import { selectCurrentTheme } from './core/store/selectors/config.selector';
 
 @Component({
   selector: 'app-root',

@@ -4,10 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 // Servcies
-import { AuthService } from 'src/app/services/auth';
+import { AuthService } from 'src/app/core/services/auth';
 import { ModelToken, ModelPostLogin, ModelResLogin } from 'src/app/models';
-import { ApiAuthService } from 'src/app/services/api/api-auth.service';
-import { LocalStorageService } from 'src/app/services/local/local-storage.service';
+import { ApiAuthService } from 'src/app/core/services/api';
+import { LocalStorageService } from 'src/app/core/services/local/local-storage.service';
 
 @Component({
   selector: 'app-login',
