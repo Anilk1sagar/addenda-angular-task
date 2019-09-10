@@ -2,13 +2,17 @@ import { Action, createReducer, on } from '@ngrx/store';
 // Actions
 import { EConfigActions, ChangeCurrentTheme, ConfigActions } from './../actions/config.actions';
 
+// Services
+import { LocalStorageService } from 'src/app/core/services/local/local-storage.service';
+
+
 // State
 export interface IConfigState {
     currentTheme: string;
 }
 
 export const initialConfigState: IConfigState = {
-	currentTheme: 'default-theme',
+	currentTheme: localStorage.getItem(LocalStorageService.KEY.currentTheme) || 'default-theme',
 };
 
 export const ConfigReducers = (state = initialConfigState, action: ConfigActions): IConfigState => {

@@ -11,23 +11,34 @@
 @import './themes/dark-theme';
 
 
-@mixin html-theme($theme) {
+@mixin global-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
     & {
-      $background: map-get($theme, background);
-      $foreground: map-get($theme, foreground);
-  
-      background-color: mat-color($background, background);
-      color: mat-color($foreground, text);
-  
-      // other html element styling here
+        background-color: mat-color($background, background);
+        color: mat-color($foreground, text);
+    }
+    a {
+        color: mat-color($foreground, text) !important;
+    }
+    .tweet-card {
+        background-color: mat-color($background, card) !important;  
+    }
+    mat-icon, span {
+        color: mat-color($foreground, icon) !important;
+    }
+
+    .menu-container {
+        background-color: mat-color($background, status-bar) !important; 
     }
 }
 
 .default-theme {
     @include angular-material-theme($as-theme);
-    @at-root main.light-theme {
-        @include html-theme($as-theme);
-    }
 }
 
 .light-theme {
@@ -36,10 +47,7 @@
 
 .dark-theme {
     @include angular-material-theme($as-dark-theme);
-}
-
-* {
-    font-family: 'Open Sans', sans-serif;
+    @include global-theme($as-dark-theme);
 }
 
 body {

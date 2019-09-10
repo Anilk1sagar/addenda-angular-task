@@ -12,7 +12,7 @@ import { selectCurrentTheme } from './core/store/selectors/config.selector';
 export class AppComponent {
 
   title = 'angular-task-addenda';
-  themeClass = 'default-theme';
+  themeClass: string;
 
   constructor(
     private overlayContainer: OverlayContainer,
@@ -21,7 +21,6 @@ export class AppComponent {
 
   ngOnInit(): void {
 
-    this.overlayContainer.getContainerElement().classList.add(this.themeClass);
     this._store.pipe(select(selectCurrentTheme)).subscribe((theme) => {
       this.themeClass = theme;
       this.onThemeChange(this.themeClass);
@@ -29,16 +28,22 @@ export class AppComponent {
   }
 
   onThemeChange(theme: string) {
-    // console.log(theme);
-    this.themeClass = theme;
-    // remove old theme class and add new theme class
-    // we're removing any css class that contains '-theme' string but your theme classes can follow any pattern
-    const overlayContainerClasses = this.overlayContainer.getContainerElement().classList;
-    const themeClassesToRemove = Array.from(overlayContainerClasses).filter((item: string) => item.includes('-theme'));
-    if (themeClassesToRemove.length) {
-      overlayContainerClasses.remove(...themeClassesToRemove);
+    const bodyClasses = document.body.classList;
+    const bodyClassToRemove = Array.from(bodyClasses).filter((item: string) => item.includes('-theme'));
+    if (bodyClassToRemove.length) {
+      bodyClasses.remove(...bodyClassToRemove);
+      bodyClasses.add(theme);
     }
-    overlayContainerClasses.add(theme);
+
+    // this.overlayContainer.getContainerElement().classList.add(theme);
+    /* remove old theme class and add new theme class
+    we're removing any css class that contains '-theme' string but your theme classes can follow any pattern */
+    // const overlayContainerClasses = this.overlayContainer.getContainerElement().classList;
+    // const themeClassesToRemove = Array.from(overlayContainerClasses).filter((item: string) => item.includes('-theme'));
+    // if (themeClassesToRemove.length) {
+    //   overlayContainerClasses.remove(...themeClassesToRemove);
+    // }
+    // overlayContainerClasses.add(theme);
   }
 
 }

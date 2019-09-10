@@ -32,7 +32,8 @@ export class LocalStorageService {
     }
 
     public static KEY = {
-        accessToken: 'access_token'
+        accessToken: 'access_token',
+        currentTheme: 'current_theme'
     }
 
 }

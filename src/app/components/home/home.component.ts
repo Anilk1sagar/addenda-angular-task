@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit {
 		this._mTweetsError$ = this._store.pipe(select(selectTweetsError));
 		this._mTweetsError$.subscribe((error) => {
 			if (error) {
+				console.log('twwet get error: ', error);
 				setTimeout(() => {
 					this.snackBar.open(error.error, null, {duration: 5000});
 				}, 0);	

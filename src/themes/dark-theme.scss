@@ -2,14 +2,19 @@ $as-dark-primary: mat-palette($mat-grey, 700, 300, 900);
 $as-dark-accent: mat-palette($mat-blue-grey, 400);
 $as-dark-warn: mat-palette($mat-red, 500);
 
+// $as-dark-theme: mat-dark-theme(
+//   $as-dark-primary,
+//   $as-dark-accent,
+//   $as-dark-warn
+// );
 
 // custom background and foreground palettes
 $my-dark-theme-background: (
-  status-bar: green,
+  status-bar: #2A2E35,
   app-bar:    map_get($mat-blue, 900),
-  background: orange,
+  background: #12181B,
   hover:      rgba(white, 0.04), 
-  card:       map_get($mat-red, 800),
+  card:       #2A2E35,
   dialog:     map_get($mat-grey, 800),
   disabled-button: $white-12-opacity,
   raised-button: map-get($mat-grey, 800),
@@ -22,7 +27,7 @@ $my-dark-theme-background: (
 );
 
 $my-dark-theme-foreground: (
-  base:              yellow,
+  base:              white,
   divider:           $white-12-opacity,
   dividers:          $white-12-opacity,
   disabled:          rgba(white, 0.3),
@@ -32,14 +37,14 @@ $my-dark-theme-foreground: (
   secondary-text:    rgba(white, 0.7),
   icon:              white,
   icons:             white,
-  text:              yellow,
+  text:              white,
   slider-min:        white,
   slider-off:        rgba(white, 0.3),
   slider-off-active: rgba(white, 0.3),
 );
 
 
-@function create-theme($primary, $accent, $warn: mat-palette($mat-red)) {
+@function create-theme($primary, $accent, $warn) {
   @return (
     primary: $primary,
     accent: $accent,
@@ -55,9 +60,3 @@ $as-dark-theme: create-theme(
   $as-dark-accent,
   $as-dark-warn
 );
-
-// $as-black-theme: mat-dark-theme(
-//   $as-dark-primary,
-//   $as-dark-accent,
-//   $as-dark-warn
-// );
